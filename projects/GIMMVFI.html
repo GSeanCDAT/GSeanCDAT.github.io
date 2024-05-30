@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generalizable Implicit Motion Modeling for Video Frame Interpolation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./Packages/GIMMVFI/css/bulma.min.css">
+  <link rel="stylesheet" href="./Packages/GIMMVFI/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./Packages/GIMMVFI/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./Packages/GIMMVFI/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./Packages/GIMMVFI/css/index.css">
+  <link rel="icon" href="./Packages/GIMMVFI/images/favicon.svg">
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./Packages/GIMMVFI/js/fontawesome.all.min.js"></script>
+  <script src="./Packages/GIMMVFI/js/bulma-carousel.min.js"></script>
+  <script src="./Packages/GIMMVFI/js/bulma-slider.min.js"></script>
+  <script src="./Packages/GIMMVFI/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h2 class="title is-2 publication-title">Generalizable Implicit Motion Modeling </p>for Video Frame Interpolation</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://gseancdat.github.io/" target="_blank">Zujin Guo</a>,</span>
+            <span class="author-block">
+              <a href="https://weivision.github.io/" target="_blank">Wei Li</a>,</span>
+            <span class="author-block">
+              <a href="https://www.mmlab-ntu.com/person/ccloy/" target="_blank">Chen Change Loy</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <!-- <span class="author-block"><a href="https://www.mmlab-ntu.com/index.html" target="_blank">S-Lab, Nanyang Technological University</a></span> -->
+            <span class="author-block">S-Lab, Nanyang Technological University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <!-- to be updated -->
+                <a href="https://arxiv.org/" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./Packages/GIMMVFI/data/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">GIMM-VFI</span> performs <b>generalizable</b> continuous motion modeling and interpolations between two adjacent video frames at arbitrary timesteps.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-kid-football">
+          <video poster="" id="kid-football" autoplay controls muted loop playsinline height="100%">
+            <source src="./Packages/GIMMVFI/data/kid-football-264.mp4"
+                    type="video/mp4"> 
+          </video>
+        </div>
+        <div class="item item-upside-down">
+          <video poster="" id="upside-down" autoplay controls muted loop playsinline height="100%">
+            <source src="./Packages/GIMMVFI/data/upside-down-264.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-rallye">
+          <video poster="" id="rallye" autoplay controls muted loop playsinline height="100%">
+            <source src="./Packages/GIMMVFI/data/rallye-264.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-color-run">
+          <video poster="" id="color-run" autoplay controls muted loop playsinline height="100%">
+            <source src="./Packages/GIMMVFI/data/color-run-264.mp4" 
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-rollerblade">
+          <video poster="" id="rollerblade" autoplay controls muted loop playsinline height="100%">
+            <source src="./Packages/GIMMVFI/data/rollerblade-264.mp4" 
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-night-race">
+          <video poster="" id="night-race" autoplay controls muted loop playsinline height="100%">
+            <source src="./Packages/GIMMVFI/data/night-race-264.mp4" 
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <div class="subtitle has-text-centered">
+      We present input videos (up) and 8X interpolated results by GIMM-VFI (down).
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          Motion modeling is a critical component in flow-based Video Frame Interpolation (VFI). 
+          Existing paradigms either simply consider linear combinations of bidirectional flows or directly predict bilateral flows with the condition of timestamps, 
+          lacking the capability of effectively modeling spatiotemporal dynamics in real-world videos.
+          To address this limitation, in this study, we introduce Generalizable Implicit Motion Modeling (GIMM), a novel and effective approach to motion modeling for VFI. 
+          Three key designs enable our GIMM as an effective motion modeling paradigm for VFI. 
+          First, to obtain useful motion priors for bilateral flow estimations at given timestamps, we perform normalization over scales and directions for initial bidirectional flows. 
+          Second, we design a motion encoding pipeline to extract spatiotemporal motion latent from bidirectional flows, effectively representing input-specific motion priors. 
+          Third, we predict arbitrary-timestep optical flows within two adjacent input frames via an adaptive coordinate-based neural network implicitly, with spatiotemporal coordinates and motion latent as inputs. 
+          Our GIMM can be smoothly integrated with existing flow-based VFI works without further modifications. We show that GIMM performs better than the current state of the art on the VFI benchmarks.
+          Code and models will be released to facilitate future research.
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <video id="main_video" autoplay controls muted loop playsinline height="100%">
+          <source src="./Packages/GIMMVFI/data/main_video.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <img id="gimm" src="./Packages/GIMMVFI/data/gimm.png" height="100%"> 
+        <div class="content has-text-justified">
+          <b>G</b>eneralizable <b>I</b>mplicit <b>M</b>otion <b>M</b>odeling module (<b>GIMM</b>). Our GIMM first transforms initial bidirectional flows \(F_{t\rightarrow0},F_{t\rightarrow1}\) as normalized flows \(V_0, V_1\).
+          Motion Encoder then extracts motion features \(K_0, K_1\) from \(V_0, V_1\) independently. 
+          \(K_0, K_1\) are then forward warped at a given timestep \(t\) using bidirectional flows to obtain the warped features \(K_{t\rightarrow0}, K_{t\rightarrow1}\). 
+          We pass both the warped and initial motion features into Latnet Refiner that outputs motion latent \(L_t\), representing motion information at \(t\). 
+          Conditioned on \(L_t(x,y)\), the coordinate-based network \(g_{\theta}\) predicts the corresponding normalized flow \(V_t\) with 3D coordinates \(\textbf{x}=(x,y,t)\). 
+          For interpolation usage, \(V_t\) is then transferred into bilateral flows \(F_{t\rightarrow0},F_{t\rightarrow1}\) through unnormalization.
+        </div>
+        <img id="gimmvfi" src="./Packages/GIMMVFI/data/gimmvfi.png" height="100%"> 
+        <div class="content has-text-justified">
+          Integrating <b>GIMM</b> with <b>V</b>ideo <b>F</b>rame <b>I</b>nterpolation (<b>GIMM-VFI</b>). GIMM-VFI utilizes a pre-trained flow estimator \(\mathcal{E}\), 
+          to predict bidirectional flows \((F_{0\rightarrow1}, F_{1\rightarrow0})\) and extracts context features \(A\) as well as correlation features \(C\) from the input frames \((I_0, I_1)\). 
+          Given the timestep \(t\), a generalizable implicit motion modeling (GIMM) module \(\mathcal{G}\) 
+          (detailed in Figure \above) takes the bidirectional flows as inputs and predicts bilateral flows \((F_{t\rightarrow0}, F_{t\rightarrow1})\), 
+          which are then passed into a fame synthesis module \(\mathcal{S}\), together with extracted features \((A, C)\), to synthesize the target frame \(I_t\).
+        </div> 
+      </div>
+    </div>
+    <!--/ Paper video. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+      <h2 class="title is-3 has-text-centered">Additional Results</h2>
+      <div class="columns is-centered">
+          <div class="column">
+              <div class="content has-text-centered">
+                  <p>Overlaid input motion</p>
+              </div>
+              <img id="r1" src="./Packages/GIMMVFI/data/motion_results/00006_0077-input_overlay.jpg" height="100%"> 
+              <img id="r2" src="./Packages/GIMMVFI/data/motion_results/00011_0523-input_overlay.jpg" height="100%"> 
+              <img id="r3" src="./Packages/GIMMVFI/data/motion_results/00009_0827-input_overlay.jpg" height="100%"> 
+              <img id="r4" src="./Packages/GIMMVFI/data/motion_results/00010_0666-input_overlay.jpg" height="100%">
+          </div>
+
+          <div class="column">
+              <div class="content has-text-centered">
+                  <p>GIMM modeled motion</p>
+              </div>
+              <div class="content has-text-centered">
+                  <video id="r1" autoplay controls muted loop playsinline style="width: 100%;">
+                      <source src="./Packages/GIMMVFI/data/motion_results/00006_0077-20-motion.mp4" type="video/mp4">
+                  </video>
+                  <video id="r2" autoplay controls muted loop playsinline style="width: 100%;">
+                    <source src="./Packages/GIMMVFI/data/motion_results/00011_0523-20-motion.mp4" type="video/mp4">
+                  </video>
+                  <video id="r3" autoplay controls muted loop playsinline style="width: 100%;">
+                    <source src="./Packages/GIMMVFI/data/motion_results/00009_0827-20-motion.mp4" type="video/mp4">
+                  </video>
+                  <video id="r4" autoplay controls muted loop playsinline style="width: 100%;">
+                    <source src="./Packages/GIMMVFI/data/motion_results/00010_0666-20-motion.mp4" type="video/mp4">
+                  </video>
+              </div>
+          </div>
+
+          <div class="column">
+            <div class="content has-text-centered">
+                <p>GIMM-VFI interpolated results</p>
+            </div>
+            <div class="content has-text-centered">
+                <video id="r1" autoplay controls muted loop playsinline style="width: 100%;">
+                    <source src="./Packages/GIMMVFI/data/motion_results/00006_0077-20-imgs.mp4" type="video/mp4">
+                </video>
+                <video id="r2" autoplay controls muted loop playsinline style="width: 100%;">
+                  <source src="./Packages/GIMMVFI/data/motion_results/00011_0523-20-imgs.mp4" type="video/mp4">
+                </video>
+                <video id="r3" autoplay controls muted loop playsinline style="width: 100%;">
+                  <source src="./Packages/GIMMVFI/data/motion_results/00009_0827-20-imgs.mp4" type="video/mp4">
+                </video>
+                <video id="r4" autoplay controls muted loop playsinline style="width: 100%;">
+                  <source src="./Packages/GIMMVFI/data/motion_results/00010_0666-20-imgs.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+      </div> 
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <!-- <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre> -->
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./Packages/GIMMVFI/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            We referred to the project page of <a href="https://nerfies.github.io/">Nerfies</a> when creating this page.
+          </p>
+
+          <!-- <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
