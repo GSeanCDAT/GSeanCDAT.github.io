@@ -25,14 +25,6 @@
   <script src="./Packages/GIMMVFI/js/bulma-carousel.min.js"></script>
   <script src="./Packages/GIMMVFI/js/bulma-slider.min.js"></script>
   <script src="./Packages/GIMMVFI/js/index.js"></script>
-  <style>
-    .reduce-space {
-        margin-top: 0;
-        margin-bottom: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-</style>
 </head>
 <body>
 
@@ -129,7 +121,17 @@
         <div class="content has-text-justified">
           <strong>TL;DR:</strong> GIMM-VFI performs <b>generalizable continuous motion modeling</b> and interpolations between two adjacent video frames at arbitrary timesteps.
         </div>
-        <h2 class="title is-3">Abstract</h2>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-three-fourths">
+        <h2 class="title is-2">Abstract</h2>
         <div class="content has-text-justified">
           Motion modeling is a critical component in flow-based Video Frame Interpolation (VFI). 
           Existing paradigms either simply consider linear combinations of bidirectional flows or directly predict bilateral flows with the condition of timestamps, 
@@ -145,11 +147,15 @@
       </div>
     </div>
     <!--/ Abstract. -->
+  </div>
+</section>
 
+<section class="section">
+  <div class="container is-max-desktop">
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-three-fourths">
-        <h2 class="title is-3">Video</h2>
+        <h2 class="title is-2">Video</h2>
         <video id="main_video" autoplay controls muted loop playsinline height="100%">
           <source src="./Packages/GIMMVFI/data/main_video.mp4"
           type="video/mp4">
@@ -157,11 +163,15 @@
       </div>
     </div>
     <!--/ Paper video. -->
+  </div>
+</section>
 
+<section class="section">
+  <div class="container is-max-desktop">
     <!-- Method. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-three-fourths">
-        <h2 class="title is-3">Method</h2>
+        <h2 class="title is-2">Method</h2>
         <img id="gimm" src="./Packages/GIMMVFI/data/gimm.png" height="100%"> 
         <div class="content has-text-justified">
           <b>G</b>eneralizable <b>I</b>mplicit <b>M</b>otion <b>M</b>odeling module (<b>GIMM</b>). Our GIMM first transforms initial bidirectional flows \(F_{t\rightarrow0},F_{t\rightarrow1}\) as normalized flows \(V_0, V_1\).
@@ -189,7 +199,7 @@
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3 has-text-centered">More interpolations</h2>
+      <h2 class="title is-2 has-text-centered">More interpolations</h2>
       <div id="results-carousel" class="carousel results-carousel">
           <div class="item item-kid-football">
             <video poster="" id="kid-football" autoplay controls muted loop playsinline height="100%">
@@ -237,7 +247,7 @@
 
 <section class="section">
   <div class="container">
-      <h2 class="title is-3 has-text-centered">Additional Results</h2>
+      <h2 class="title is-2 has-text-centered">Additional Results</h2>
       <div class="columns is-centered">
           <div class="column">
               <div class="content has-text-centered">
