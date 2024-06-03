@@ -134,14 +134,17 @@
         <h2 class="title is-2">Abstract</h2>
         <div class="content has-text-justified">
           Motion modeling is a critical component in flow-based Video Frame Interpolation (VFI). 
-          Existing paradigms either simply consider linear combinations of bidirectional flows or directly predict bilateral flows with the condition of timestamps, 
-          lacking the capability of effectively modeling spatiotemporal dynamics in real-world videos.
-          To address this limitation, in this study, we introduce Generalizable Implicit Motion Modeling (GIMM), a novel and effective approach to motion modeling for VFI. 
-          Three key designs enable our GIMM as an effective motion modeling paradigm for VFI. 
-          First, to obtain useful motion priors for bilateral flow estimations at given timestamps, we perform normalization over scales and directions for initial bidirectional flows. 
-          Second, we design a motion encoding pipeline to extract spatiotemporal motion latent from bidirectional flows, effectively representing input-specific motion priors. 
-          Third, we predict arbitrary-timestep optical flows within two adjacent input frames via an adaptive coordinate-based neural network implicitly, with spatiotemporal coordinates and motion latent as inputs. 
-          Our GIMM can be smoothly integrated with existing flow-based VFI works without further modifications. We show that GIMM performs better than the current state of the art on the VFI benchmarks.
+          Existing paradigms either consider linear combinations of bidirectional flows or directly predict bilateral flows with the condition of timestamps, 
+          lacking the capability of effectively modeling spatiotemporal dynamics in real-world videos. 
+          To address this limitation, in this study, we introduce Generalizable Implicit Motion Modeling (GIMM), 
+          a novel and effective approach to motion modeling for VFI. 
+          Specifically, to enable GIMM as an effective motion modeling paradigm, 
+          we design a motion encoding pipeline to model spatiotemporal motion latent from bidirectional flows extracted from pre-trained flow estimators, 
+          effectively representing input-specific motion priors. 
+          Then, we implicitly predict arbitrary-timestep optical flows within two adjacent input frames via an adaptive coordinate-based neural network, 
+          with spatiotemporal coordinates and motion latent as inputs. 
+          Our GIMM can be smoothly integrated with existing flow-based VFI works without further modifications. 
+          We show that GIMM performs better than the current state of the art on the VFI benchmarks. 
           Code and models will be released to facilitate future research.
         </div>
       </div>
