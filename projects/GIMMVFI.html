@@ -133,9 +133,9 @@
       <div class="column is-three-fourths">
         <h2 class="title is-2">Abstract</h2>
         <div class="content has-text-justified">
-          Motion modeling is a critical component in flow-based Video Frame Interpolation (VFI). 
-          Existing paradigms either consider linear combinations of bidirectional flows or directly predict bilateral flows with the condition of timestamps, 
-          lacking the capability of effectively modeling spatiotemporal dynamics in real-world videos. 
+          Motion modeling is critical in flow-based Video Frame Interpolation (VFI). 
+          Existing paradigms either consider linear combinations of bidirectional flows or directly predict bilateral flows for given timestamps without exploring favorable motion priors, 
+          thus lacking the capability of effectively modeling spatiotemporal dynamics in real-world videos. 
           To address this limitation, in this study, we introduce Generalizable Implicit Motion Modeling (GIMM), 
           a novel and effective approach to motion modeling for VFI. 
           Specifically, to enable GIMM as an effective motion modeling paradigm, 
@@ -143,9 +143,7 @@
           effectively representing input-specific motion priors. 
           Then, we implicitly predict arbitrary-timestep optical flows within two adjacent input frames via an adaptive coordinate-based neural network, 
           with spatiotemporal coordinates and motion latent as inputs. 
-          Our GIMM can be smoothly integrated with existing flow-based VFI works without further modifications. 
-          We show that GIMM performs better than the current state of the art on the VFI benchmarks. 
-          Code and models will be released to facilitate future research.
+          Our GIMM can be smoothly integrated with existing flow-based VFI works without further modifications. We show that GIMM performs better than the current state of the art on the VFI benchmarks.
         </div>
       </div>
     </div>
@@ -177,7 +175,7 @@
         <h2 class="title is-2">Method</h2>
         <img id="gimm" src="./Packages/GIMMVFI/data/gimm.png" height="100%"> 
         <div class="content has-text-justified">
-          <b>G</b>eneralizable <b>I</b>mplicit <b>M</b>otion <b>M</b>odeling module (<b>GIMM</b>). Our GIMM first transforms initial bidirectional flows \(F_{t\rightarrow0},F_{t\rightarrow1}\) as normalized flows \(V_0, V_1\).
+          <b>G</b>eneralizable <b>I</b>mplicit <b>M</b>otion <b>M</b>odeling module (<b>GIMM</b>). Our GIMM first transforms initial bidirectional flows \(F_{0\rightarrow1},F_{1\rightarrow0}\) as normalized flows \(V_0, V_1\).
           Motion Encoder then extracts motion features \(K_0, K_1\) from \(V_0, V_1\) independently. 
           \(K_0, K_1\) are then forward warped at a given timestep \(t\) using bidirectional flows to obtain the warped features \(K_{t\rightarrow0}, K_{t\rightarrow1}\). 
           We pass both the warped and initial motion features into Latnet Refiner that outputs motion latent \(L_t\), representing motion information at \(t\). 
