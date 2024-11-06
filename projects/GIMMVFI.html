@@ -2,9 +2,6 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Generalizable Implicit Motion Modeling for Video Frame Interpolation</title>
 
@@ -35,6 +32,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h2 class="title is-2 publication-title">Generalizable Implicit Motion Modeling </p>for Video Frame Interpolation</h2>
+          <h1 class="title is-4 publication-conference"> NeurIPS 2024 </h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://gseancdat.github.io/" target="_blank">Zujin Guo</a>,</span>
@@ -133,16 +131,12 @@
         <h2 class="title is-2">Abstract</h2>
         <div class="content has-text-justified">
           Motion modeling is critical in flow-based Video Frame Interpolation (VFI). 
-          Existing paradigms either consider linear combinations of bidirectional flows or directly predict bilateral flows for given timestamps without exploring favorable motion priors, 
-          thus lacking the capability of effectively modeling spatiotemporal dynamics in real-world videos. 
-          To address this limitation, in this study, we introduce Generalizable Implicit Motion Modeling (GIMM), 
-          a novel and effective approach to motion modeling for VFI. 
-          Specifically, to enable GIMM as an effective motion modeling paradigm, 
-          we design a motion encoding pipeline to model spatiotemporal motion latent from bidirectional flows extracted from pre-trained flow estimators, 
-          effectively representing input-specific motion priors. 
-          Then, we implicitly predict arbitrary-timestep optical flows within two adjacent input frames via an adaptive coordinate-based neural network, 
-          with spatiotemporal coordinates and motion latent as inputs. 
-          Our GIMM can be smoothly integrated with existing flow-based VFI works without further modifications. We show that GIMM performs better than the current state of the art on the VFI benchmarks.
+          Existing paradigms either consider linear combinations of bidirectional flows or directly predict bilateral flows for given timestamps without exploring favorable motion priors, thus lacking the capability of effectively modeling spatiotemporal dynamics in real-world videos. 
+          To address this limitation, in this study, we introduce Generalizable Implicit Motion Modeling (GIMM), a novel and effective approach to motion modeling for VFI. 
+          Specifically, to enable GIMM as an effective motion modeling paradigm, we design a motion encoding pipeline to model spatiotemporal motion latent from bidirectional flows extracted from pre-trained flow estimators, effectively representing input-specific motion priors. 
+          Then, we implicitly predict arbitrary-timestep optical flows within two adjacent input frames via an adaptive coordinate-based neural network, with spatiotemporal coordinates and motion latent as inputs. 
+          Our GIMM can be easily integrated with existing flow-based VFI works by supplying accurately modeled motion.
+          We show that GIMM performs better than the current state of the art on standard VFI benchmarks.
         </div>
       </div>
     </div>
@@ -306,10 +300,10 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{guo2024gimmvfi,
+    <pre><code>@inproceedings{guo2024generalizable,
   author    = {Guo, Zujin and Li, Wei and Loy, Chen Change},
   title     = {Generalizable Implicit Motion Modeling for Video Frame Interpolation},
-  journal   = {arXiv preprint arXiv:},
+  booktitle = {Advances in Neural Information Processing Systems},
   year      = {2024},
 }</code></pre>
   </div>
