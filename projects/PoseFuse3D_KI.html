@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Controllable Human-centric Keyframe Interpolation with Generative Prior</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./Packages/PoseFuse3D_KI/css/bulma.min.css">
+  <link rel="stylesheet" href="./Packages/PoseFuse3D_KI/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./Packages/PoseFuse3D_KI/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./Packages/PoseFuse3D_KI/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./Packages/PoseFuse3D_KI/css/index.css">
+  <link rel="icon" href="./Packages/PoseFuse3D_KI/images/favicon.svg">
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./Packages/PoseFuse3D_KI/js/fontawesome.all.min.js"></script>
+  <script src="./Packages/PoseFuse3D_KI/js/bulma-carousel.min.js"></script>
+  <script src="./Packages/PoseFuse3D_KI/js/bulma-slider.min.js"></script>
+  <script src="./Packages/PoseFuse3D_KI/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h2 class="title is-2 publication-title">Controllable Human-centric Keyframe Interpolation </p> with Generative Prior</h2>
+          <!-- <h1 class="title is-4 publication-conference"> arXiv 2025 </h1> -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://gseancdat.github.io/" target="_blank">Zujin Guo</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://wusize.github.io/" target="_blank">Size Wu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://caizhongang.com/" target="_blank">Zhongang Cai</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://weivision.github.io/" target="_blank">Wei Li</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.mmlab-ntu.com/person/ccloy/" target="_blank">Chen Change Loy</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <!-- <span class="author-block"><a href="https://www.mmlab-ntu.com/index.html" target="_blank">S-Lab, Nanyang Technological University</a></span> -->
+            <span class="author-block"><sup>1</sup>S-Lab, Nanyang Technological University,</span>
+            <span class="author-block"><sup>2</sup>SenseTime Research</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="http://arxiv.org/" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-three-fourths">
+        <img id="teaser" src="./Packages/PoseFuse3D_KI/data/teaser_web.png" height="100%"> 
+        <div class="content has-text-justified">
+          <strong>TL;DR:</strong> We introduce PoseFuse3D Keyframe Interpolator (<strong>PoseFuse3D-KI</strong>), a novel framework that integrates <strong>3D human guidance signals</strong> into the diffusion process for Controllable Human-centric Keyframe Interpolation (CHKI). 
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-three-fourths">
+        <h2 class="title is-2">Abstract</h2>
+        <div class="content has-text-justified">
+Existing interpolation methods use pre-trained video diffusion priors to generate intermediate frames between sparsely sampled keyframes. In the absence of 3D geometric guidance, these methods struggle to produce plausible results for complex, articulated human motions and offer limited control over the synthesized dynamics.
+In this paper, we introduce PoseFuse3D Keyframe Interpolator (<strong>PoseFuse3D-KI</strong>), a novel framework that integrates 3D human guidance signals into the diffusion process for Controllable Human-centric Keyframe Interpolation (CHKI). 
+To provide rich spatial and structural cues for interpolation, our PoseFuse3D, a 3D-informed control model, features a novel SMPL-X encoder that transforms 3D geometry and shape into the 2D latent conditioning space, alongside a fusion network that integrates these 3D cues with 2D pose embeddings.
+For evaluation, we build CHKI-Video, a new dataset annotated with both 2D poses and 3D SMPL-X parameters. We show that PoseFuse3D-KI consistently outperforms state-of-the-art baselines on CHKI-Video, achieving a 9% improvement in PSNR and a 38% reduction in LPIPS.
+Comprehensive ablations demonstrate that our PoseFuse3D model improves interpolation fidelity.
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-three-fourths">
+        <h2 class="title is-2">Video</h2>
+        <video id="main_video" autoplay controls muted loop playsinline height="100%">
+          <source src="./Packages/PoseFuse3D_KI/data/main_video.mp4"
+          type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-three-fourths">
+        <h2 class="title is-2">Method</h2>
+        <img id="gimm" src="./Packages/PoseFuse3D_KI/data/main_framework.png" height="100%"> 
+        <div class="content has-text-justified">
+        Our PoseFuse3D-KI framework, as shown in (a), comprises a video diffusion model (VDM) and a novel control model, PoseFuse3D. 
+        The PoseFuse3D model extracts rich features from both 3D and 2D control signals and fuses them into a unified representation to guide the VDM. 
+        The key component of PoseFuse3D is the SMPL-X encoder as illustrated in (b), which provides <i>explicit 3D signal features</i>. 
+        Specifically, the SMPL-X encoder first extracts 3D information from the SMPL-X model with 2D correspondences via projection. 
+        The 3D and 2D information is then encoded in parallel. With features of 2D correspondences, 3D information is aggregated onto the 2D image plane using attention mechanisms. 
+        The aggregated features are subsequently processed to produce the final feature \(S^{3D}\).
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-2 has-text-centered">More interpolations</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+          <div class="item fcvf_test50">
+            <video poster="" id="fcvf_test50" autoplay controls muted loop playsinline height="100%">
+              <source src="./Packages/PoseFuse3D_KI/data/fcvf_test50.mp4"
+                      type="video/mp4"> 
+            </video>
+          </div>
+        <div class="item fcvg_test00">
+          <video poster="" id="fcvg_test00" autoplay controls muted loop playsinline height="100%">
+            <source src="./Packages/PoseFuse3D_KI/data/fcvg_test00.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item output_064">
+          <video poster="" id="output_064" autoplay controls muted loop playsinline height="100%">
+            <source src="./Packages/PoseFuse3D_KI/data/output_064.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item output_125">
+          <video poster="" id="output_125" autoplay controls muted loop playsinline height="100%">
+            <source src="./Packages/PoseFuse3D_KI/data/output_125.mp4" 
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item output_147">
+          <video poster="" id="output_147" autoplay controls muted loop playsinline height="100%">
+            <source src="./Packages/PoseFuse3D_KI/data/output_147.mp4" 
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item output_083">
+          <video poster="" id="output_083" autoplay controls muted loop playsinline height="100%">
+            <source src="./Packages/PoseFuse3D_KI/data/output_083.mp4" 
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item output_068">
+          <video poster="" id="output_068" autoplay controls muted loop playsinline height="100%">
+            <source src="./Packages/PoseFuse3D_KI/data/output_068.mp4" 
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+      <h2 class="title is-2 has-text-centered">In-the-wild Interpolation</h2>
+        <div class="content has-text-justified">
+        Our PoseFuse3D-KI framework can be directly applied to interpolate in-the-wild human-centric keyframes. Below, we illustrate a simple pipeline using linear interpolation for human body joints:
+
+        <li><strong>Step 1:</strong> Fit SMPL-X models to the humans in the input keyframes using a 3D human model estimator such as SMPLer-X.</li>
+        <li><strong>Step 2:</strong> Linearly interpolate the SMPL-X parameters to obtain intermediate SMPL-X poses.</li>
+        <li><strong>Step 3:</strong> Map SMPL-X joints to 2D DWPose keypoints.</li>
+        <li><strong>Step 4:</strong> Get the intermediate frames using PoseFuse3D-KI!</li>
+        
+      </div>
+
+
+      <div class="columns is-vcentered is-mobile is-multiline" style="min-width: 100px;">
+          <div class="column">
+              <div class="content has-text-centered" style="min-height: 60px; display: flex; align-items: center; justify-content: center;">
+                  <p><strong>Start Keyframe</strong></p>
+              </div>
+              <img id="r1" src="./Packages/PoseFuse3D_KI/data/itw_examples/itw_example1/frames/frame_0000.png" height="100%" > 
+              <img id="r2" src="./Packages/PoseFuse3D_KI/data/itw_examples/itw_example2/frames/frame_0000.png" height="100%"> 
+          </div>
+          <div class="column">
+              <div class="content has-text-centered" style="min-height: 60px; display: flex; align-items: center; justify-content: center;">
+                  <p><strong>End Keyframe</strong></p>
+              </div>
+              <img id="r1" src="./Packages/PoseFuse3D_KI/data/itw_examples/itw_example1/frames/frame_0024.png" height="100%"> 
+              <img id="r2" src="./Packages/PoseFuse3D_KI/data/itw_examples/itw_example2/frames/frame_0024.png" height="100%"> 
+          </div>
+          <div class="column">
+            <div class="content has-text-centered" style="min-height: 60px; display: flex; align-items: center; justify-content: center;">
+                <p><strong>Interpolated SMPL-X</strong></p>
+            </div>
+            <div class="content has-text-centered">
+                <video id="r1" autoplay controls muted loop playsinline style="width: 100%;">
+                    <source src="./Packages/PoseFuse3D_KI/data/itw_examples/itw_example1/3d_pose_video.mp4" type="video/mp4">
+                </video>
+                <video id="r2" autoplay controls muted loop playsinline style="width: 100%;">
+                  <source src="./Packages/PoseFuse3D_KI/data/itw_examples/itw_example2/3d_pose_video.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+          <div class="column">
+            <div class="content has-text-centered" style="min-height: 60px; display: flex; align-items: center; justify-content: center;">
+                <p><strong>Extracted DWPose</strong></p>
+            </div>
+            <div class="content has-text-centered">
+                <video id="r1" autoplay controls muted loop playsinline style="width: 100%;">
+                    <source src="./Packages/PoseFuse3D_KI/data/itw_examples/itw_example1/2d_pose_video.mp4" type="video/mp4">
+                </video>
+                <video id="r2" autoplay controls muted loop playsinline style="width: 100%;">
+                  <source src="./Packages/PoseFuse3D_KI/data/itw_examples/itw_example2/2d_pose_video.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+          <div class="column">
+            <div class="content has-text-centered" style="min-height: 60px; display: flex; align-items: center; justify-content: center;">
+                <p><strong>Interpolated Videos</strong></p>
+            </div>
+            <div class="content has-text-centered">
+                <video id="r1" autoplay controls muted loop playsinline style="width: 100%;">
+                    <source src="./Packages/PoseFuse3D_KI/data/itw_examples/itw_example1/interpolated_video.mp4" type="video/mp4">
+                </video>
+                <video id="r2" autoplay controls muted loop playsinline style="width: 100%;">
+                  <source src="./Packages/PoseFuse3D_KI/data/itw_examples/itw_example2/interpolated_video.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+      </div>
+    </div> 
+  </div>
+</section>
+
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./Packages/PoseFuse3D_KI/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            We referred to the project page of <a href="https://nerfies.github.io/">Nerfies</a> when creating this website.
+          </p>
+
+          <!-- <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
